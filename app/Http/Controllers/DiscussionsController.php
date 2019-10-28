@@ -52,7 +52,7 @@ class DiscussionsController extends Controller
 
         session()->flash('success', 'Discussion posted.');
 
-        return redirect()->route('discussion.index');
+        return redirect()->route('discussions.index');
     }
 
     /**
@@ -62,7 +62,11 @@ class DiscussionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Discussion $discussion)
-    { }
+    {
+        return view('discussions.show', [
+            'discussion' => $discussion
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
