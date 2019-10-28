@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Discussion;
+use App\Http\Requests\CreateDiscussionRequest;
 use Illuminate\Http\Request;
+use Str;
 
 class DiscussionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store']);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { }
+    {
+        return view('discussions.index')->with('discussions', Discussion::all());
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +42,17 @@ class DiscussionsController extends Controller
      */
     public function store(CreateDiscussionRequest $request)
     {
-        dd();
+        auth()->user()->discussions()->create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'channel_id' => $request->channel,
+            'slug' => Str::slug($request->title, '-'),
+
+        ]);
+
+        session()->flash('success', 'Discussion posted.');
+
+        return redirect()->route('discussion.index');
     }
 
     /**
