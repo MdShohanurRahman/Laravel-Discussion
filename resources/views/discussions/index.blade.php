@@ -15,5 +15,6 @@
         </div>
     </div>
     @endforeach
+{{ $discussions->appends(['channel' => request()->query('channel') ])->links() }}
 
     @endsection
