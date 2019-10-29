@@ -44,15 +44,20 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                    <a href="{{route('users.notifications')}}" class="nav-link">
-                                <li class="nav-item">
-                            <span class="badge badge-info">
-                                {{auth()->user()->unreadNotifications->count()}}
-                                Unread notifications
-                            </span>
-                        </li>
-                            </a>
+                        <a href="{{route('users.notifications')}}" class="nav-link">
+                            <li class="nav-item">
+                                <span class="badge badge-info">
+                                    {{auth()->user()->unreadNotifications->count()}}
+                                    Unread notifications
+                                </span>
+                            </li>
+                        </a>
                         @endauth
+                        <li class="nav-item">
+                            <a href="{{ route('discussions.index') }}" class="nav-link">
+                                Discussions
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
