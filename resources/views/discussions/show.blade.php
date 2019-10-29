@@ -104,3 +104,4 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.0.0/trix.js"></script>
 @endsection
+ 
